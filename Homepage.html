@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coupon99.com</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .carousel-item img {
+            width: 1400px;
+            height: 500px;
+            border-radius: 5px;
+        }
+
+        .carousel-caption {
+            color: black;
+            font-size: larger;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* fetching All Coupons Styles */
+        #coupons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 10px;
+            /* Adjust the gap between grid items */
+        }
+
+        .coupon {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            width: calc(33.333% - 20px);
+            /* Three items per row - adjust gap if changed */
+            box-sizing: border-box;
+        }
+
+        .coupon img {
+            max-width: 100px;
+            max-height: 100px;
+            display: block;
+            margin: 0 auto 10px;
+            /* Center the image and add some margin below */
+        }
+
+        @media (max-width: 768px) {
+            .coupon {
+                width: calc(50% - 20px);
+                /* Two items per row on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .coupon {
+                width: 100%;
+                /* Single item per row on very small screens */
+            }
+        }
+
+        /* fetching All Coupons Styles */
+
+        .coupon {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .coupon img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
+        #searchInput {
+            max-width: 700px;
+            margin-left: -1in;
+            /* Shifts the search bar to the left by 1 inch */
+        }
+
+        .user-icon {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .user-icon .fas.fa-user-circle {
+            font-size: 36px;
+            color: #3d9970;
+            /* Adjust as needed */
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        /* This will ensure the hover-content shows when hovering over the user-icon and itself */
+        .hover-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            right: 0;
+            top: 100%;
+            /* Align directly below the user icon */
+            z-index: 1000;
+            width: 300px;
+            transition: opacity 0.5s;
+            /* Smooth transition for the hover effect */
+            opacity: 0;
+            /* Start invisible */
+        }
+
+        .user-icon:hover .hover-content {
+            display: block;
+            opacity: 1;
+            /* Fully visible on hover */
+        }
+
+
+        .welcome-note {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .welcome-note i {
+            font-size: 40px;
+            color: #3d9970;
+            /* Changed color to green */
+            margin-right: 15px;
+        }
+
+        .welcome-note p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .login-signup-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .btn-login {
+            background-color: #3d9970;
+            color: white;
+        }
+
+        .btn-signup {
+            border: 2px solid #3d9970;
+            color: #3d9970;
+            background-color: white;
+        }
+
+        .btn-signup:hover {
+            background-color: #3d9970;
+            color: white;
+        }
+
+        .btn-login:hover {
+            background-color: white;
+            /* Change background to white on hover */
+            color: #3d9970;
+            /* Change text color to green (or any color that matches your design) for visibility */
+            border: 2px solid #3d9970;
+            /* Optional: adds a border to maintain visual consistency */
+            transition: background-color 0.3s, color 0.3s;
+            /* Smooth transition for color and background */
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            /* Adjust the size of icons */
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #3d9970;
+            /* Change icon color */
+            /* Space between the icon and text */
+        }
+
+        .right-arrow-icon {
+            position: absolute;
+            right: -25px;
+            /* Adjust based on your preference */
+            top: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Optional: Style for the h3 and p elements for more customization */
+        .step h3 {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .step p {
+            font-size: 1rem;
+        }
+
+        .coupons-heading {
+            background-color: #333;
+            /* Apply background color to the div */
+            text-align: center;
+            /* Center align the text within the div */
+            padding: 20px;
+            /* Add some padding for spacing */
+            color: white;
+            /* Change text color for better contrast */
+        }
+
+        .coupons-heading h2 {
+            margin: 0;
+            /* Remove default margin from h2 to tighten spacing */
+        }
+
+        .navbar-nav {
+            position: relative;
+            z-index: 1050;
+            /* Ensure it's above carousel controls */
+            /* Additional positioning styles as needed */
+        }
+        .navbar-nav :hover{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bolder;
+            background-color: #2e8b57;
+        }
+
+        .get-coupon-button {
+            background-color: #3d9970;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* Smooth transition for hover effects */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* Subtle shadow for depth */
+        }
+
+        .get-coupon-button:hover {
+            background-color: #2e8b57;
+            /* Slightly darker shade on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            /* More pronounced shadow on hover */
+            transform: translateY(-2px);
+            /* Slight lift effect on hover */
+        }
+
+        .get-coupon-button:active {
+            transform: translateY(1px);
+            /* Slight push effect on click */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* Reset shadow to mimic "press" */
+        }
+
+        #login-btn {
+            background-color: #3d9970;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+
+        }
+
+        #signup-btn {
+            background-color: #3d9970;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="png/logo-no-background.png" alt="Logo" style="max-height: 60px; width: auto;"
+                    class="d-inline-block align-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#couponModal">Add Coupon</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="About.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contact.html">Contact us</a>
+                    </li>
+                </ul>
+                <input class="form-control me-2" type="search" placeholder="search coupons using name & keyword"
+                    id="searchInput" aria-label="Search">
+                <div class="navbar-nav">
+                    <div class="user-icon">
+                        <i class="fas fa-user-circle"></i>
+                        <div class="hover-content">
+                            <div class="welcome-note">
+                                <i class="fas fa-shopping-bag"></i>
+                                <p>Welcome to <strong>Coupons99.com</strong>. Earn extra cashback on top of other
+                                    discounts on your shopping via Coupons99.com</p>
+                            </div>
+                            <div class="login-signup-buttons">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
+                                    class="btn-login">Login</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-Signup"
+                                    class="btn-signup">Sign Up</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Coupon Submission Modal -->
+    <div class="modal fade" id="couponModal" tabindex="-1" aria-labelledby="couponModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="couponModalLabel">Add Coupon</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="Addcoupon">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Coupon Title:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="code" class="form-label">Coupon Code:</label>
+                            <input type="text" class="form-control" id="code" name="code" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Coupon Image:</label>
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Coupon Price:</label>
+                            <input type="price" class="form-control" id="price" name="price" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category:</label>
+                            <select class="form-select" id="category" name="category"
+                                onchange="toggleCustomCategory(this)">
+                                <option value="shopping">Shopping</option>
+                                <option value="dining">Dining</option>
+                                <option value="travel">Travel</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="customCategory" style="display:none;">
+                            <label for="customCategoryInput" class="form-label">Please specify:</label>
+                            <input type="text" class="form-control" id="customCategoryInput" name="customCategory">
+                        </div>
+                        <div class="mb-3">
+                            <label for="expiry" class="form-label">Expiry Date:</label>
+                            <input type="date" class="form-control" id="expiry" name="expiry" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="discount" class="form-label">Discount Percentage:</label>
+                            <input type="number" class="form-control" id="discount" name="discount" min="0" max="100"
+                                step="1" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="terms" class="form-label">Terms and Conditions:</label>
+                            <textarea class="form-control" id="terms" name="terms" required></textarea>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit Coupon</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inside the Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Coupon99</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h2 class="text-center">Login</h2>
+                    <form id="login-form">
+                        <!-- Input fields for username and password -->
+                        <div class="mb-3">
+                            <label for="login-username" class="form-label">Username:</label>
+                            <input type="text" class="form-control" id="login-username" name="login-username"
+                                autocomplete="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="login-password" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="login-password" name="login-password"
+                                autocomplete="current-password" required>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <button type="submit" id="login-btn" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <p class="text-center">Don't have an account? <a href="#" data-bs-toggle="modal"
+                                data-bs-target="#modal-Signup">Register here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inside the Registration Modal -->
+    <div class="modal fade" id="modal-Signup" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Coupon99</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Registration Form -->
+                    <div class="container">
+                        <h2 class="text-center">Register</h2>
+                        <form id="registration-form">
+                            <div class="mb-3">
+                                <label for="reg-username" class="form-label">Username:</label>
+                                <input type="text" class="form-control" id="reg-username" name="reg-username"
+                                    autocomplete="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-password" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="reg-password" name="reg-password"
+                                    autocomplete="new-password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" name="reg-email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-number" class="form-label">Mobile No:</label>
+                                <input type="text" class="form-control" id="number" name="reg-number"
+                                    pattern="\+[0-9]{10,15}" required
+                                    title="Mobile number should start with a + and include country code followed by 9 to 14 digits.">
+                            </div>
+                            <div class="mb-3 text-center">
+                                <button type="submit" id="signup-btn" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <p class="text-center">Already have an account? <a href="#" data-bs-toggle="modal"
+                                data-bs-target="#loginModal">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- slide ad -->
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="false" style="margin-top: 3%;" >
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner container">
+            <div class="carousel-item active">
+                <img src="https://d3pzq99hz695o4.cloudfront.net/sitespecific/in/banner/web/beea2a9b535f990cec3da4274865a271/banner_home-580x1160.webp?329428"
+                    class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="https://d3pzq99hz695o4.cloudfront.net/sitespecific/in/banner/web/d5340041be659e4ba9971acc50d7b69a/banner_home-580x1160.webp?259104"
+                    class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://d3pzq99hz695o4.cloudfront.net/sitespecific/in/banner/web/b2aa8487bedc8c4dc6058dbbbe8ce84b/banner_home-580x1160.webp?691041"
+                    class="d-block w-100" alt="...">
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+
+    <!-- steps to buy coupon -->
+    <div class="container my-5">
+        <h2 class="text-center mb-4">Three Steps To Save With Coupons99.com</h2>
+        <div class="row">
+            <div class="col-md-4 step">
+                <div class="step-icon">
+                    <i class="fas fa-search"></i>
+                    <!-- <span class="right-arrow-icon"><i class="fas fa-arrow-right"></i></span> -->
+                </div>
+                <h3>Find Best Coupon and Offer</h3>
+                <p>Click to explore and find the best coupon and offer.</p>
+            </div>
+            <div class="col-md-4 step">
+                <div class="step-icon">
+                    <i class="fas fa-tags"></i>
+                    <!-- <span class="right-arrow-icon"><i class="fas fa-arrow-right"></i></span> -->
+                </div>
+                <h3>Click to Buy Now</h3>
+                <p>Click on the coupon to buy now and avail the discount.</p>
+            </div>
+            <div class="col-md-4 step">
+                <div class="step-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3>Pay for the Coupon and Save</h3>
+                <p>Proceed to payment and save money with Coupons99.com.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coupon content -->
+    <div class="coupons-heading">
+        <h2><b>Coupons</b></h2>
+    </div>
+    <br>
+    <div id="coupons-container">
+        <!-- Example coupon item -->
+        <div class="coupon">
+            <h3>Coupon Title</h3>
+            <img src="coupon-image.jpg" alt="Coupon Image">
+            <p>Description of the coupon.</p>
+            <button class="action-button" onclick="redeemCoupon()">Redeem</button>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div>© 2024 Coupon99.com. All rights reserved.</div>
+        <div>Follow us on
+            <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <!-- Service -->
+    <script src="Homepage.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Payment Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('resources/PG Background.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .bg-text {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .payment-methods,
+        .form-section {
+            margin: 20px;
+        }
+
+        .payment-methods button {
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content,
+        .modal-header,
+        .modal-body,
+        .modal-footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-text">
+        <div class="logo">
+            <img src="resources/Paymentgateway.png" alt="Payment Gateway Logo">
+        </div>
+        <h2>Payment Details</h2>
+        <div id="totalAmount" class="mb-3"><b>Total Amount to Pay:</b></div>
+
+        <div class="payment-methods">
+            <button type="button" class="btn btn-secondary" onclick="updatePaymentMethod('card')">Debit/Credit
+                Card</button>
+            <button type="button" class="btn btn-secondary" onclick="updatePaymentMethod('netbanking')">Net
+                Banking</button>
+            <button type="button" class="btn btn-secondary" onclick="updatePaymentMethod('upi')">UPI</button>
+        </div>
+
+        <form id="paymentDetailsForm">
+            <!-- Payment method details will be loaded here -->
+        </form>
+        <button type="button" class="btn btn-primary mt-3" id="payNowButton">Pay Now </button>
+    </div>
+
+    <!-- Payment Success Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="paymentSuccessModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Payment Success</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Your payment was successful!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="closeModal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function updatePaymentMethod(method) {
+            var form = document.getElementById('paymentDetailsForm');
+            if (method === 'card') {
+                form.innerHTML = `
+                <div class="mb-3">
+                    <label>Card Number</label>
+                    <input type="text" class="form-control" placeholder="Card Number">
+                </div>
+                <div class="mb-3">
+                    <label>Expiry Date</label>
+                    <input type="text" class="form-control" placeholder="MM/YY">
+                </div>
+                <div class="mb-3">
+                    <label>CVV</label>
+                    <input type="password" class="form-control" placeholder="CVV">
+                </div>
+            `;
+            } else if (method === 'netbanking') {
+                form.innerHTML = `
+                <div class="mb-3">
+                    <label>Select Bank</label>
+                    <select class="form-control">
+                        <option value="hdfc">HDFC Bank</option>
+                        <option value="icici">ICICI Bank</option>
+                        <option value="sbi">State Bank of India</option>
+                        <option value="chase">Chase Bank</option>
+                        <option value="boa">Bank of America</option>
+                        <option value="citi">Citibank</option>
+                        <option value="hsbc">HSBC</option>
+                        <option value="barclays">Barclays</option>
+                        <option value="db">Deutsche Bank</option>
+                        <option value="sc">Standard Chartered</option>
+                        <option value="bnp">BNP Paribas</option>
+                        <option value="santander">Santander</option>
+                        <option value="td">TD Bank</option>
+                        <option value="rbc">Royal Bank of Canada</option>
+                        <option value="westpac">Westpac</option>
+                        <option value="anz">ANZ Bank</option>
+                        <option value="nab">National Australia Bank</option>
+                        <option value="ing">ING Group</option>
+                        <option value="ubs">UBS</option>
+                        <option value="credit_suisse">Credit Suisse</option>
+                        <option value="others">Other Banks</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>Account Number</label>
+                    <input type="text" class="form-control" placeholder="Account Number">
+                </div>
+            `;
+            } else if (method === 'upi') {
+                form.innerHTML = `
+                <div class="mb-3">
+                    <label>UPI ID</label>
+                    <input type="text" class="form-control" placeholder="UPI ID">
+                </div>
+            `;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const totalAmountElement = document.getElementById('totalAmount');
+            const payNowButton = document.getElementById('payNowButton');
+            const queryParams = new URLSearchParams(window.location.search);
+            const total = queryParams.get('total'); // Default to $10 if not specified
+            totalAmountElement.textContent = `Total Amount to Pay: ₹${total}`;
+            payNowButton.textContent = `Pay Now ₹${total}`;
+            updatePaymentMethod(document.getElementById('paymentMethodSelector').value);
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize with card payment details
+            updatePaymentMethod('card');
+
+            document.getElementById('payNowButton').addEventListener('click', function () {
+                const form = document.querySelector('#paymentDetailsForm');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                $('#paymentSuccessModal').modal('show');
+            });
+
+            document.getElementById('closeModal').addEventListener('click', function () {
+                $('#paymentSuccessModal').modal('hide');
+                window.location.href = 'homepage.html'; // Redirect to homepage after closing modal
+            });
+
+            // Initialize default payment method details
+            updatePaymentMethod('card');
+        });
+
+    </script>
+
+</body>
+
+</html>

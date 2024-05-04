@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Urbanist", sans-serif;
+}
+
+:root {
+    --bs-dark-color: #000000;
+    --bs-dark-primary: #12171c;
+    --bs-main-color: #fff;
+    --bs-primary-color: #c6c6c6;
+    --secondary-color: #cf29fd;
+    --bs-supporting-color: #1f0a1d;
+
+
+
+}
+
+h1,
+h2.h3,
+h4,
+h5 {
+    font-family: 'lexend Deca', sans-serif;
+    color: var(--bs-dark-color);
+}
+
+h1 {
+    font-size: 3.8rem;
+
+}
+
+h2 {
+    line-height: 3rem;
+    font-weight: 600;
+    font-size: 3.4rem;
+}
+
+p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--bs-dark-color)
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+button,
+a {
+    font-size: 1.15rem !important;
+    letter-spacing: 0.03rem;
+    word-spacing: .1rem;
+}
+
+.common-heading {
+    font-size: 2.8rem;
+    font-weight: 500;
+    letter-spacing: 0.01rem !important;
+}
+
+.common-title {
+    margin-bottom: 4.2rem;
+}
+
+.service-section {
+    padding: 6rem 0 3rem !important;
+}
+
+.bg-color {
+    background-color: #3d9970;
+}
+
+.bg-theme {
+    color: var(--bs-supporting-color);
+    background-image: none !important;
+}
+
+.icon-span {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--secondary-color);
+    color: var(--bs-main-color);
+}
+
+.card-box:hover {
+    box-shadow: rgba(27, 78, 130, 0.2) 0 30px 40px;
+}
+
+.hero-info-section {
+    background-image: linear-gradient(rgba(22, 22, 22, 0.9), rgba(22, 22, 22, 0.9)), url(https://www.pexels.com/photo/buildings-near-body-of-water-at-night-1519088/);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding: 6rem 0;
+    overflow: hidden;
+
+}
+
+
+.hero-section .container {
+    display: grid;
+    place-content: center;
+    height: inherit;
+
+}
+
+.bg-main {
+    height: 80vh;
+    position: relative;
+}
+
+.hero-img--section {
+
+    height: auto;
+    width: 30rem;
+    border-radius: 4rem
+}
+
+.hero-img--section {
+    margin-top: 3rem;
+}
+
+.custom-shape-divider-bottom-1709906351 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1709906351 svg {
+    position: relative;
+    display: block;
+    width: calc(105% + 1.3px);
+    height: 143px;
+}
+
+.custom-shape-divider-bottom-1709906351 .shape-fill {
+    fill: #FFFFFF;
+}
+
+#searchInput {
+    max-width: 700px;
+}

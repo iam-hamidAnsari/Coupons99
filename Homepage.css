@@ -1,0 +1,277 @@
+.carousel-item img {
+    width: 1400px;
+    height: 500px;
+}
+
+.carousel-caption {
+    color: black;
+    font-size: larger;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: #fff;
+}
+
+/* fetching All Coupons Styles */
+#coupons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 10px;
+    /* Adjust the gap between grid items */
+}
+
+.coupon {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: calc(33.333% - 20px);
+    /* Three items per row - adjust gap if changed */
+    box-sizing: border-box;
+}
+
+.coupon img {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+    /* Center the image and add some margin below */
+}
+
+@media (max-width: 768px) {
+    .coupon {
+        width: calc(50% - 20px);
+        /* Two items per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .coupon {
+        width: 100%;
+        /* Single item per row on very small screens */
+    }
+}
+
+/* fetching All Coupons Styles */
+
+.coupon {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.coupon img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+#searchInput {
+    max-width: 700px;
+    margin-left: -1in;
+    /* Shifts the search bar to the left by 1 inch */
+}
+
+.user-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.user-icon .fas.fa-user-circle {
+    font-size: 36px;
+    color: #3d9970;
+    /* Adjust as needed */
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* This will ensure the hover-content shows when hovering over the user-icon and itself */
+.hover-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    right: 0;
+    top: 100%;
+    /* Align directly below the user icon */
+    z-index: 1000;
+    width: 300px;
+    transition: opacity 0.5s;
+    /* Smooth transition for the hover effect */
+    opacity: 0;
+    /* Start invisible */
+}
+
+.user-icon:hover .hover-content {
+    display: block;
+    opacity: 1;
+    /* Fully visible on hover */
+}
+
+
+.welcome-note {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.welcome-note i {
+    font-size: 40px;
+    color: #3d9970;
+    /* Changed color to green */
+    margin-right: 15px;
+}
+
+.welcome-note p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.login-signup-buttons a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.btn-login {
+    background-color: #3d9970;
+    color: white;
+}
+
+.btn-signup {
+    border: 2px solid #3d9970;
+    color: #3d9970;
+    background-color: white;
+}
+
+.btn-signup:hover {
+    background-color: #3d9970;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: white;
+    /* Change background to white on hover */
+    color: #3d9970;
+    /* Change text color to green (or any color that matches your design) for visibility */
+    border: 2px solid #3d9970;
+    /* Optional: adds a border to maintain visual consistency */
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transition for color and background */
+}
+
+.step {
+    text-align: center;
+    padding: 20px;
+}
+
+.step-icon {
+    font-size: 2rem;
+    /* Adjust the size of icons */
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #3d9970;
+    /* Change icon color */
+    /* Space between the icon and text */
+}
+
+.right-arrow-icon {
+    position: absolute;
+    right: -25px;
+    /* Adjust based on your preference */
+    top: 0;
+    font-size: 1.5rem;
+}
+
+/* Optional: Style for the h3 and p elements for more customization */
+.step h3 {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.step p {
+    font-size: 1rem;
+}
+
+.coupons-heading {
+    background-color: #333;
+    /* Apply background color to the div */
+    text-align: center;
+    /* Center align the text within the div */
+    padding: 20px;
+    /* Add some padding for spacing */
+    color: white;
+    /* Change text color for better contrast */
+}
+
+.coupons-heading h2 {
+    margin: 0;
+    /* Remove default margin from h2 to tighten spacing */
+}
+
+.navbar-nav {
+    position: relative;
+    z-index: 1050;
+    /* Ensure it's above carousel controls */
+    /* Additional positioning styles as needed */
+}
+
+.get-coupon-button {
+    background-color: #3d9970;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effects */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
+}
+
+.get-coupon-button:hover {
+    background-color: #2e8b57;
+    /* Slightly darker shade on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* More pronounced shadow on hover */
+    transform: translateY(-2px);
+    /* Slight lift effect on hover */
+}
+
+.get-coupon-button:active {
+    transform: translateY(1px);
+    /* Slight push effect on click */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Reset shadow to mimic "press" */
+}
+
+#login-btn {
+    background-color: #3d9970;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+
+}
+
+#signup-btn {
+    background-color: #3d9970;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+
+}
