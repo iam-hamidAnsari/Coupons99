@@ -1,0 +1,74 @@
+[
+    {
+        "id": 11,
+        "price": 20,
+        "couponTitle": "Jio",
+        "couponCode": "jio50",
+        "imageUrl": "d67099e2-5e12-4f3a-96e4-1c188a2c8606.webp",
+        "description": "50% off on recharge ",
+        "category": "shopping",
+        "expiryDate": "2024-05-23",
+        "percentage": 50,
+        "terms": "for more details visit jio.com"
+    },
+    {
+        "id": 12,
+        "price": 20,
+        "couponTitle": "Myntra",
+        "couponCode": "myn20",
+        "imageUrl": "36d1e7a4-6796-4415-be0c-2b1c4ac74778.jpeg",
+        "description": "20% off on ",
+        "category": "shopping",
+        "expiryDate": "2024-05-16",
+        "percentage": 20,
+        "terms": "for more info visit myntra.com"
+    },
+    {
+        "id": 13,
+        "price": 25,
+        "couponTitle": "Flipkart",
+        "couponCode": "flip75",
+        "imageUrl": "d5a826a2-7e2b-4759-8326-e2dad78a0677.jpeg",
+        "description": "75% off on ",
+        "category": "shopping",
+        "expiryDate": "2024-05-16",
+        "percentage": 75,
+        "terms": "for more info visit flipkart.com"
+    },
+    {
+        "id": 14,
+        "price": 10,
+        "couponTitle": "test-01",
+        "couponCode": "test",
+        "imageUrl": "de6060bb-1566-458e-b95e-87b037e33c33.jpg",
+        "description": "10% OFF ",
+        "category": "others",
+        "expiryDate": "2024-05-15",
+        "percentage": 10,
+        "terms": "TEST"
+    },
+    {
+        "id": 15,
+        "price": 50,
+        "couponTitle": "Red Tape",
+        "couponCode": "rd50",
+        "imageUrl": "a23f4467-3732-4d79-8c66-33de7ee81d90.jpg",
+        "description": "get 50% off any red tape shoes",
+        "category": "shopping",
+        "expiryDate": "2024-05-16",
+        "percentage": 50,
+        "terms": "for more details visit redtape.com"
+    },
+    {
+        "id": 17,
+        "price": 10,
+        "couponTitle": "Airtel",
+        "couponCode": "air15",
+        "imageUrl": "dfc60e31-0c0f-46e4-8ab7-c53d0102e6b9.png",
+        "description": "get 15 off on any recharge above 249",
+        "category": "shopping",
+        "expiryDate": "2024-05-24",
+        "percentage": 15,
+        "terms": "for more details visit airtel.com"
+    }
+]

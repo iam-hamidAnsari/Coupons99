@@ -9,291 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        .carousel-item img {
-            width: 1400px;
-            height: 500px;
-            border-radius: 5px;
-        }
-
-        .carousel-caption {
-            color: black;
-            font-size: larger;
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #333;
-            color: #fff;
-        }
-
-        /* fetching All Coupons Styles */
-        #coupons-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 10px;
-            /* Adjust the gap between grid items */
-        }
-
-        .coupon {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            width: calc(33.333% - 20px);
-            /* Three items per row - adjust gap if changed */
-            box-sizing: border-box;
-        }
-
-        .coupon img {
-            max-width: 100px;
-            max-height: 100px;
-            display: block;
-            margin: 0 auto 10px;
-            /* Center the image and add some margin below */
-        }
-
-        @media (max-width: 768px) {
-            .coupon {
-                width: calc(50% - 20px);
-                /* Two items per row on smaller screens */
-            }
-        }
-
-        @media (max-width: 480px) {
-            .coupon {
-                width: 100%;
-                /* Single item per row on very small screens */
-            }
-        }
-
-        /* fetching All Coupons Styles */
-
-        .coupon {
-            border: 1px solid #ddd;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-        }
-
-        .coupon img {
-            max-width: 100px;
-            max-height: 100px;
-        }
-
-        #searchInput {
-            max-width: 700px;
-            margin-left: -1in;
-            /* Shifts the search bar to the left by 1 inch */
-        }
-
-        .user-icon {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .user-icon .fas.fa-user-circle {
-            font-size: 36px;
-            color: #3d9970;
-            /* Adjust as needed */
-            padding: 10px;
-            border-radius: 50%;
-        }
-
-        /* This will ensure the hover-content shows when hovering over the user-icon and itself */
-        .hover-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            right: 0;
-            top: 100%;
-            /* Align directly below the user icon */
-            z-index: 1000;
-            width: 300px;
-            transition: opacity 0.5s;
-            /* Smooth transition for the hover effect */
-            opacity: 0;
-            /* Start invisible */
-        }
-
-        .user-icon:hover .hover-content {
-            display: block;
-            opacity: 1;
-            /* Fully visible on hover */
-        }
-
-
-        .welcome-note {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .welcome-note i {
-            font-size: 40px;
-            color: #3d9970;
-            /* Changed color to green */
-            margin-right: 15px;
-        }
-
-        .welcome-note p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .login-signup-buttons a {
-            display: inline-block;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .btn-login {
-            background-color: #3d9970;
-            color: white;
-        }
-
-        .btn-signup {
-            border: 2px solid #3d9970;
-            color: #3d9970;
-            background-color: white;
-        }
-
-        .btn-signup:hover {
-            background-color: #3d9970;
-            color: white;
-        }
-
-        .btn-login:hover {
-            background-color: white;
-            /* Change background to white on hover */
-            color: #3d9970;
-            /* Change text color to green (or any color that matches your design) for visibility */
-            border: 2px solid #3d9970;
-            /* Optional: adds a border to maintain visual consistency */
-            transition: background-color 0.3s, color 0.3s;
-            /* Smooth transition for color and background */
-        }
-
-        .step {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .step-icon {
-            font-size: 2rem;
-            /* Adjust the size of icons */
-            position: relative;
-            display: inline-block;
-            margin-bottom: 15px;
-            color: #3d9970;
-            /* Change icon color */
-            /* Space between the icon and text */
-        }
-
-        .right-arrow-icon {
-            position: absolute;
-            right: -25px;
-            /* Adjust based on your preference */
-            top: 0;
-            font-size: 1.5rem;
-        }
-
-        /* Optional: Style for the h3 and p elements for more customization */
-        .step h3 {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .step p {
-            font-size: 1rem;
-        }
-
-        .coupons-heading {
-            background-color: #333;
-            /* Apply background color to the div */
-            text-align: center;
-            /* Center align the text within the div */
-            padding: 20px;
-            /* Add some padding for spacing */
-            color: white;
-            /* Change text color for better contrast */
-        }
-
-        .coupons-heading h2 {
-            margin: 0;
-            /* Remove default margin from h2 to tighten spacing */
-        }
-
-        .navbar-nav {
-            position: relative;
-            z-index: 1050;
-            /* Ensure it's above carousel controls */
-            /* Additional positioning styles as needed */
-        }
-        .navbar-nav :hover{
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            font-weight: bolder;
-            background-color: #2e8b57;
-        }
-
-        .get-coupon-button {
-            background-color: #3d9970;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            /* Smooth transition for hover effects */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            /* Subtle shadow for depth */
-        }
-
-        .get-coupon-button:hover {
-            background-color: #2e8b57;
-            /* Slightly darker shade on hover */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            /* More pronounced shadow on hover */
-            transform: translateY(-2px);
-            /* Slight lift effect on hover */
-        }
-
-        .get-coupon-button:active {
-            transform: translateY(1px);
-            /* Slight push effect on click */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            /* Reset shadow to mimic "press" */
-        }
-
-        #login-btn {
-            background-color: #3d9970;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-
-        }
-
-        #signup-btn {
-            background-color: #3d9970;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
@@ -503,7 +219,7 @@
     </div>
 
     <!-- slide ad -->
-    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="false" style="margin-top: 3%;" >
+    <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="false" style="margin-top: 3%;">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                 aria-current="true" aria-label="Slide 1"></button>
@@ -588,16 +304,265 @@
     <footer>
         <div>© 2024 Coupon99.com. All rights reserved.</div>
         <div>Follow us on
-            <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/hamid-ansari-303b35263/" class="text-white"><i
+                    class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/iam-hamidAnsari" class="text-white"><i class="fab fa-github"></i></a>
+              <a href="https://www.instagram.com/iam_hamidansari" class="text-white"><i class="fab fa-instagram"></i></a>
         </div>
+        <div>Devloped By Hamid Ansari</div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <!-- Service -->
-    <script src="Homepage.js"></script>
+    <script>
+        function toggleCustomCategory(select) {
+            var customCategoryDiv = document.getElementById('customCategory');
+            if (select.value === 'others') {
+                customCategoryDiv.style.display = 'block';
+            } else {
+                customCategoryDiv.style.display = 'none';
+            }
+        }
+    </script>
+    <!-- service for user icon -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var userIcon = document.querySelector('.user-icon');
+            userIcon.addEventListener('click', function () {
+                var hoverContent = this.querySelector('.hover-content');
+                var isDisplayed = window.getComputedStyle(hoverContent).display !== 'none';
+                hoverContent.style.display = isDisplayed ? 'none' : 'block';
+            });
+        });
+    </script>
+
+    <!-- Fetching All Coupons -->
+    <script>
+        // JavaScript for appending coupons remains the same
+        // Example function to handle the action button click event
+        function redeemCoupon(coupon) {
+            // Now you can do something with the coupon object, such as:
+            // alert("Coupon redeemed successfully! Title: " + coupon.couponTitle);
+            // Log coupon details to the console as an example
+            console.log(coupon);
+            // Redirect to the next page URL
+            window.location.href = 'Data.html?couponId=' + coupon.id; // Assuming each coupon has an 'id' property
+        }
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "data.json",
+                type: "GET",
+                success: function (coupons) {
+                    var container = $('#coupons-container');
+                    container.empty(); // Clear previous content
+
+                    coupons.forEach(function (coupon) {
+                        var div = $('<div>').addClass('coupon');
+
+                        var title = $('<h3>').text(coupon.couponTitle);
+                        div.append(title);
+
+                        if (coupon.imageUrl) {
+                            var img = $('<img>').attr("src", "coupon99/CouponImages/" + coupon.imageUrl);
+                            div.append(img);
+                        }
+
+                        var price = $('<h3>').text("₹" + coupon.price);
+                        div.append(price);
+
+                        var description = $('<p>').text(coupon.description);
+                        div.append(description);
+
+                        var actionButton = $('<button>')
+                        var actionButton = $('<button>')
+                            .addClass('action-button get-coupon-button') // Use the new class
+                            .text('Get this Coupon')
+                            .on('click', (function (couponCopy) {
+                                return function () {
+                                    redeemCoupon(couponCopy);
+                                }
+                            })(coupon));
+
+
+                        div.append(actionButton);
+                        container.append(div);
+                    });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error loading coupons: ", textStatus, errorThrown);
+                    // Optionally, display an error message to the user
+                }
+            });
+        });
+
+
+    </script>
+    <script>
+
+    </script>
+    <!-- Connecting Add COupon -->
+    <script>
+        $("#Addcoupon").submit(function (event) {
+            event.preventDefault();
+
+            // Create a FormData object and append the form data
+            var formData = new FormData();
+            formData.append("couponTitle", $("#title").val());
+            formData.append("couponCode", $("#code").val());
+            // Append the file associated with the 'image' input. Assumes single file upload.
+            formData.append("imageUrl", $("#image")[0].files[0]);
+            formData.append("price", $("#price").val());
+            formData.append("description", $("#description").val());
+            formData.append("category", $("#category").val());
+            formData.append("expiryDate", $("#expiry").val());
+            formData.append("percentage", $("#discount").val());
+            formData.append("terms", $("#terms").val());
+
+            $.ajax({
+                url: "http://localhost:8080/AddCoupon",
+                type: "POST",
+                processData: false, // Important: Do not process data
+                contentType: false, // Important: Do not set a content type
+                data: formData,
+                success: function (response) {
+                    alert("Coupon Added Successfully");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Something went wrong");
+                    console.log(jqXHR, textStatus, errorThrown);
+                }
+            });
+        });
+    </script>
+    <!-- Connecting Registration Form -->
+    <script>
+        $("#registration-form").submit(function (event) {
+            event.preventDefault();
+            var usersData = {
+                "username": $("#reg-username").val(),
+                "password": $("#reg-password").val(),
+                "email": $("#email").val(),
+                "number": $("#number").val()
+            };
+            $.ajax({
+                url: "http://localhost:8080/Register",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(usersData),
+                success: function (response2) {
+                    if (response2 == true) {
+                        alert("Registerd Successfully");
+                    }
+                    else {
+                        alert("Something went wrong");
+                        console.log(response2);
+                        console.log(usersData);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR, textStatus, errorThrown);
+
+                }
+            });
+
+        })
+    </script>
+    <!-- Login page -->
+    <script>
+        $("#login-form").submit(function (event) {
+            event.preventDefault();
+            var username = $("#login-username").val();
+            var password = $("#login-password").val();
+            $.ajax({
+                url: "http://localhost:8080/Login?username=" + username,
+                type: "POST",
+                success: function (response3) {
+                    if (response3 != null) {
+                        if (password == response3.password) {
+                            alert("Welcome " + response3.username);
+                            // $(".welcome").html("Welcome " + response3.Firstname);
+                            // data = "heres your data  " + " First Name : " + response.Firstname + " Last name : " + response.Lastname + " Contact no : " + response.number + " Email : " + response.email + " Gender :" + response.gender;
+                            // $(".result").html(data);
+
+                        } else {
+                            alert("Invalid Password");
+                            // console.log(response3);
+                        }
+                    }
+                    else {
+                        alert("Invalid Password Or username");
+
+                    }
+                },
+                error: function (j, t, err) {
+                    alert("Please Register First");
+                    console.log(err, j, t);
+
+                }
+            });
+        })
+    </script>
+    <!-- Search Coupons -->
+    <script>
+        $("#searchInput").on('input', function (event) { // Changed the event to 'input' for instant feedback or use 'change' to trigger when the input field loses focus
+            event.preventDefault();
+            var query = $("#searchInput").val();
+
+            $.ajax({
+                url: "http://localhost:8080/Search?query=" + query, // Fixed concatenation here
+                type: "GET",
+                success: function (response4) { // Changed 'response' to 'response4' here
+                    var container = $('#coupons-container');
+                    container.empty(); // Clear previous content
+
+                    response4.forEach(function (coupon) { // Changed to 'response4' here
+                        var div = $('<div>').addClass('coupon');
+
+                        var title = $('<h3>').text(coupon.couponTitle);
+                        div.append(title);
+
+                        if (coupon.imageUrl) {
+                            var img = $('<img>').attr("src", "coupon99/CouponImages/" + coupon.imageUrl);
+                            div.append(img);
+                        }
+
+
+                        var price = $('<h3>').text("₹" + coupon.price);
+                        div.append(price);
+
+                        var description = $('<p>').text(coupon.description);
+                        div.append(description);
+
+                        var actionButton = $('<button>')
+                        var actionButton = $('<button>')
+                            .addClass('action-button get-coupon-button') // Use the new class
+                            .text('Get this Coupon')
+                            .on('click', (function (couponCopy) {
+                                return function () {
+                                    redeemCoupon(couponCopy);
+                                }
+                            })(coupon));
+
+
+                        div.append(actionButton);
+                        container.append(div);
+                    });
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error("Error loading coupons: ", textStatus, errorThrown);
+                    // Optionally, display an error message to the user
+                }
+            });
+        });
+    </script>
+
+    <!-- Coupon Page -->
+    <script>
+
+    </script>
+
 
 </body>
 
