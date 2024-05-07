@@ -411,7 +411,7 @@
     </div>
 
     <!-- Payment Form Summary Section -->
-    
+
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -428,17 +428,22 @@
             // Fetch products based on couponId from URL and render them
             function fetchProducts() {
                 const couponId = getQueryParam('couponId'); // Get couponId from the URL
-                const requestUrl = `http://localhost:8080/id?id=${couponId}`; // Construct the request URL
+                if (!couponId) {
+                    console.error('No couponId provided in the URL parameters.');
+                    return;
+                }
 
                 $.ajax({
-                    url: requestUrl,
+                    url: "data.json", // Fetch all products data from local JSON file
                     type: "GET",
-                    contentType: "application/json",
-                    success: function (fetchedProducts) {
-                        if (!Array.isArray(fetchedProducts)) {
-                            fetchedProducts = [fetchedProducts]; // Wrap in array if necessary
+                    dataType: "json", // Ensure that jQuery parses the fetched data as JSON
+                    success: function (data) {
+                        // Filter the products for the provided couponId
+                        products = data.filter(product => product.id == couponId);
+                        if (products.length === 0) {
+                            console.error("No products found with the specified couponId");
+                            return;
                         }
-                        products = fetchedProducts;
                         renderProductList(products);
                         attachEventListeners(); // Attach event listeners after products are rendered
                     },
@@ -460,20 +465,30 @@
                 productList.empty(); // Clear existing products
                 products.forEach(product => {
                     productList.append(`
-                    <div class="product">
-                        <img src="coupon99/CouponImages/${product.imageUrl}" alt="${product.couponTitle} Image" style="height: 200px; width: 300px;">
-                        <h3>${product.couponTitle}</h3>
-                        <h2><b>₹ ${product.price}</b></h2>
-                        <p>Description: ${product.description}</p>
-                        <p>Category: ${product.category}</p>
-                        <p>Expires: ${product.expiryDate}</p>
-                        <p>Discount: ${product.percentage}% off</p>
-                        <p>Terms: ${product.terms}</p>
-                        <button class="add-to-cart-btn" data-product-id="${product.id}">Add to cart</button>
-                    </div>
-                `);
+                <div class="product">
+                    <img src="coupon99/CouponImages/${product.imageUrl}" alt="${product.couponTitle} Image" style="height: 200px; width: 300px;">
+                    <h3>${product.couponTitle}</h3>
+                    <h2><b>₹ ${product.price}</b></h2>
+                    <p>Description: ${product.description}</p>
+                    <p>Category: ${product.category}</p>
+                    <p>Expires: ${product.expiryDate}</p>
+                    <p>Discount: ${product.percentage}% off</p>
+                    <p>Terms: ${product.terms}</p>
+                    <button class="add-to-cart-btn" data-product-id="${product.id}">Add to cart</button>
+                </div>
+            `);
                 });
             }
+
+            // Attach event listeners to 'Add to Cart' buttons
+            function attachEventListeners() {
+                $('#product-list').on('click', '.add-to-cart-btn', function () {
+                    const productId = $(this).data('product-id');
+                    console.log("Product added to cart:", productId); // Example action
+                    // You can integrate addToCart function here as per your application logic
+                });
+            }
+
 
 
 
