@@ -275,3 +275,34 @@ footer {
     border-radius: 5px;
 
 }
+
+@media (max-width: 768px) {
+    .coupon img {
+        width: 100%;
+        /* Full width images on smaller screens */
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        /* Responsive images in carousel */
+    }
+
+    .step-icon,
+    .step h3 {
+        text-align: center;
+        /* Center alignment of text and icons for steps */
+    }
+
+    .modal-body,
+    .modal-footer {
+        text-align: center;
+        /* Center modal content */
+    }
+
+    .action-button {
+        width: 100%;
+        /* Full width buttons on small screens */
+        margin-top: 10px;
+    }
+}
